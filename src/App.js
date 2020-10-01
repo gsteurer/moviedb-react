@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import "./App.css";
+import MovieList from "./components/MovieList";
+import MovieSearch from "./components/MovieSearch";
+import "bootstrap/dist/css/bootstrap.min.css";
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+} from "react-bootstrap";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="row">
+        <div className="col-md-12">
+          <Router>
+            <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
+              <Navbar.Brand href="#home">MovieDB</Navbar.Brand>
+
+              <Navbar id="basic-navbar-nav">
+                <Nav className="mr-auto">
+                  <Nav.Link href="/">Home</Nav.Link>
+
+                  <Nav.Link href="/search">Search</Nav.Link>
+                </Nav>
+              </Navbar>
+            </Navbar>
+
+            <br />
+
+            <Switch>
+              <Route exact path="/">
+                <MovieList />
+              </Route>
+              <Route exact path="/search">
+                <MovieSearch />
+              </Route>
+            </Switch>
+          </Router>
+        </div>
+      </div>
     </div>
   );
 }
-
-export default App;
