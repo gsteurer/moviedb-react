@@ -1,8 +1,20 @@
 import React, { Component } from "react";
+import "./MovieCard.css";
+import axios from "axios";
 
 class MovieCard extends Component {
   constructor(props) {
     super(props);
+    this.deleteMovie = this.deleteMovie.bind(this);
+  }
+  deleteMovie(event) {
+    event.preventDefault();
+    axios
+      .delete("http://localhost:3000/movies/" + this.props.movie.uid)
+      .then((res) => {
+        console.log(this.props.movie.uid);
+        window.location.reload();
+      });
   }
   render() {
     return (
@@ -16,6 +28,12 @@ class MovieCard extends Component {
             <a href={this.props.movie.wiki_url} className="btn btn-primary">
               More Info
             </a>
+            <button
+              className="btn btn-primary btn-delete"
+              onClick={this.deleteMovie}
+            >
+              Delete
+            </button>
           </div>
           <div className="card-footer text-muted">
             {this.props.movie.origin} -- {this.props.movie.movie_cast} --{" "}
