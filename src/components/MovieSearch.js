@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import MovieCard from "./MovieCard";
 import { searchMovies } from "../actions/Actions";
 
 import "./MovieSearch.css";
@@ -29,20 +30,7 @@ class MovieSearch extends Component {
         <ul>
           {this.props.movies.map((item) => (
             <li key={item.uid}>
-              <div className="card text-center">
-                <div className="card-header">{item.director}</div>
-                <div className="card-body">
-                  <h5 className="card-title">{item.title}</h5>
-                  <h6 className="card-title">{item.genre}</h6>
-                  <p className="card-text">{item.plot}</p>
-                  <a href={item.wiki_url} className="btn btn-primary">
-                    More Info
-                  </a>
-                </div>
-                <div className="card-footer text-muted">
-                  {item.origin} -- {item.movie_cast} -- {item.release_year}
-                </div>
-              </div>
+              <MovieCard movie={item} />
             </li>
           ))}
         </ul>
