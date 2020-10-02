@@ -14,7 +14,7 @@ class MovieList extends Component {
       <div className="MovieList">
         <ul>
           {this.state.movieList.map((item) => (
-            <li key={item.title}>
+            <li key={item.uid}>
               <div className="card text-center">
                 <div className="card-header">{item.director}</div>
                 <div className="card-body">

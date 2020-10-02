@@ -1,17 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import MovieList from "./components/MovieList";
 import MovieSearch from "./components/MovieSearch";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button,
-} from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 
 export default function App() {
   return (
@@ -25,14 +18,11 @@ export default function App() {
               <Navbar id="basic-navbar-nav">
                 <Nav className="mr-auto">
                   <Nav.Link href="/">Home</Nav.Link>
-
                   <Nav.Link href="/search">Search</Nav.Link>
                 </Nav>
               </Navbar>
             </Navbar>
-
             <br />
-
             <Switch>
               <Route exact path="/">
                 <MovieList />

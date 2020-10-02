@@ -1,15 +1,21 @@
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGIN_SUBMIT = "LOGIN_SUBMIT";
-export const LOGIN_FAILURE = "LOGIN_FAILURE";
+import axios from "axios";
 
-export function loginSuccess(token) {
-  return { type: LOGIN_SUCCESS, token };
-}
+export const SEARCH_MOVIES = "SEARCH_MOVIES";
+export const SEARCH_MOVIES_FAILURE = "SEARCH_MOVIES_FAILURE";
 
-export function loginSubmit(username, password) {
-  return { type: LOGIN_SUBMIT, username, password };
-}
-
-export function loginFailure(msg) {
-  return { type: LOGIN_FAILURE, msg };
-}
+export const searchMovies = (payload) => async (dispatch) => {
+  try {
+    const res = await axios.get(
+      `http://localhost:3000/movies/search?query=` + payload
+    );
+    dispatch({
+      type: SEARCH_MOVIES,
+      payload: res.data,
+    });
+  } catch (e) {
+    dispatch({
+      type: SEARCH_MOVIES_FAILURE,
+      payload: console.log(e),
+    });
+  }
+};
